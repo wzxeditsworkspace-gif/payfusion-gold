@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="WzX Editor">
+    <title>Paramètres de Sécurité | PayFusion Gold</title>
+
+    <!-- ARCHITECTURE POLICE & ICONES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 
+           ================================================================
+           PAYFUSION CORE DESIGN SYSTEM V15.0 - ARCHITECTURE RIGIDE
+           DESIGN : NOIR PUR & GOLD MÉTALLIQUE SPÉCULAIRE
+           DÉVELOPPÉ POUR : WzX EDITOR | 100% RESPONSIVE & ALIGNÉ
+           ================================================================
+        */
+
+        :root {
+            /* GRADIENT OR MÉTALLIQUE OFFICIEL */
+            --gold-metallic: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            --gold-solid: #D4AF37;
+            --gold-glow: rgba(212, 175, 55, 0.2);
+            
+            /* SURFACES ET BORDURES */
+            --black-pure: #000000;
+            --black-surface: #050505;
+            --black-card: #0A0A0A;
+            --border-luxe: #1A1A1A;
+
+            /* TYPOGRAPHIE ET ESPACEMENT */
+            --text-main: #FFFFFF;
+            --text-dim: #777777;
+            --sidebar-w: 280px;
+            --header-h: 80px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* 1. RESET SANS CONCESSION */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            background-color: var(--black-pure); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            width: 100%;
+            min-height: 100vh;
+        }
+
+        /* 2. NAVIGATION LATÉRALE (FIXE SUR DESKTOP) */
+        aside {
+            width: var(--sidebar-w);
+            height: 100vh;
+            background: var(--black-surface);
+            border-right: 1px solid var(--border-luxe);
+            position: fixed;
+            left: 0; top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            transition: var(--transition);
+        }
+
+        .sidebar-brand {
+            height: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-luxe);
+        }
+
+        .brand-logo-text {
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: var(--gold-metallic);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .nav-list { list-style: none; padding: 25px 15px; flex-grow: 1; }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            transition: var(--transition);
+        }
+
+        /* ALIGNEMENT RIGIDE DES ICONES SIDEBAR */
+        .nav-link .icon-box {
+            width: 35px; /* Boîte fixe pour alignement vertical parfait */
+            display: flex;
+            justify-content: flex-start;
+            font-size: 16px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--gold-metallic);
+            color: var(--black-pure);
+            border-radius: 2px;
+        }
+
+        /* 3. HEADER ADAPTATIF */
+        header {
+            height: var(--header-h);
+            background: rgba(0,0,0,0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-luxe);
+            position: fixed;
+            top: 0; right: 0;
+            width: calc(100% - var(--sidebar-w));
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+            transition: var(--transition);
+        }
+
+        .mobile-toggle { display: none; font-size: 24px; color: var(--gold-solid); cursor: pointer; }
+
+        /* 4. ZONE DE CONTENU PRINCIPALE (GRID ADAPTATIF) */
+        main {
+            margin-left: var(--sidebar-w);
+            padding: calc(var(--header-h) + 60px) 5% 60px 5%;
+            width: calc(100% - var(--sidebar-w));
+            transition: var(--transition);
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+            width: 100%;
+        }
+
+        /* CARTE DE CONFIGURATION */
+        .config-card {
+            background: var(--black-card);
+            border: 1px solid var(--border-luxe);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .config-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--gold-metallic);
+        }
+
+        .card-header { margin-bottom: 35px; }
+        .card-header h2 { font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 3px; color: var(--gold-solid); }
+        .card-header p { font-size: 10px; color: var(--text-dim); text-transform: uppercase; margin-top: 5px; }
+
+        /* INPUTS AVEC ICÔNES VERROUILLÉES */
+        .form-group { margin-bottom: 25px; width: 100%; }
+        .form-label { display: block; font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; font-weight: 800; }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            background: var(--black-pure);
+            border: 1px solid var(--border-luxe);
+            width: 100%;
+            transition: var(--transition);
+        }
+
+        /* BOÎTE D'ICÔNE INTERNE ALIGNÉE */
+        .input-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--border-luxe);
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        .input-field {
+            flex: 1;
+            padding: 0 15px;
+            height: 50px;
+            background: transparent;
+            border: none;
+            color: var(--text-main);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .input-container:focus-within { border-color: var(--gold-solid); box-shadow: var(--gold-glow); }
+        .input-container:focus-within .input-icon { color: var(--gold-solid); border-right-color: var(--gold-solid); }
+
+        /* BOUTON D'ACTION LUXE */
+        .btn-action {
+            width: 100%;
+            padding: 18px;
+            background: var(--gold-metallic);
+            color: var(--black-pure);
+            border: none;
+            font-weight: 900;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 10px;
+        }
+
+        .btn-action:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+        /* 5. RESPONSIVE DESIGN (ADAPTATION ÉCRAN) */
+        @media (max-width: 1024px) {
+            aside { transform: translateX(-100%); z-index: 1001; }
+            header { width: 100%; padding: 0 20px; }
+            main { margin-left: 0; width: 100%; padding: 120px 20px 60px; }
+            .mobile-toggle { display: block; }
+            aside.active { transform: translateX(0); }
+            .settings-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 500px) {
+            .config-card { padding: 30px 20px; }
+            .settings-grid { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="mainSidebar">
+        <div class="sidebar-brand">
+            <span class="brand-logo-text">PayFusion</span>
+        </div>
+        <ul class="nav-list">
+            <li class="nav-item">
+                <a href="home.html" class="nav-link">
+                    <div class="icon-box"><i class="fa-solid fa-house"></i></div>
+                    Dashboard
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="wallet.html" class="nav-link">
+                    <div class="icon-box"><i class="fa-solid fa-wallet"></i></div>
+                    Portefeuille
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="services.html" class="nav-link">
+                    <div class="icon-box"><i class="fa-solid fa-gem"></i></div>
+                    Services
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="account.html" class="nav-link">
+                    <div class="icon-box"><i class="fa-solid fa-circle-user"></i></div>
+                    Mon Profil
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="settings.html" class="nav-link active">
+                    <div class="icon-box"><i class="fa-solid fa-gears"></i></div>
+                    Paramètres
+                </a>
+            </li>
+            <li class="nav-item" style="margin-top: 50px; border-top: 1px solid #111; padding-top: 20px;">
+                <a href="logout.html" class="nav-link" style="color: #FF3333;">
+                    <div class="icon-box"><i class="fa-solid fa-power-off"></i></div>
+                    Déconnexion
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- HEADER SYSTEM -->
+    <header>
+        <div class="mobile-toggle" onclick="toggleSidebar()"><i class="fa-solid fa-bars"></i></div>
+        <div style="font-size: 11px; font-weight: 900; letter-spacing: 3px; color: var(--gold-solid);">SÉCURITÉ DU COMPTE</div>
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <span style="font-size: 9px; color: #00FF66; font-weight: 900;">SESSION ACTIVE</span>
+        </div>
+    </header>
+
+    <!-- MAIN SETTINGS CONTAINER -->
+    <main>
+        <div class="settings-grid">
+
+            <!-- BLOC 1 : IDENTITÉ -->
+            <div class="config-card">
+                <div class="card-header">
+                    <h2>Identité Membre</h2>
+                    <p>Informations d'affichage sur le réseau</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nom d'affichage complet</label>
+                    <div class="input-container">
+                        <div class="input-icon"><i class="fa-solid fa-signature"></i></div>
+                        <input type="text" id="userNameInput" class="input-field" placeholder="Chargement...">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Adresse Email (Cryptée)</label>
+                    <div class="input-container" style="opacity: 0.4;">
+                        <div class="input-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <input type="text" id="userEmailInput" class="input-field" disabled>
+                    </div>
+                </div>
+
+                <button class="btn-action" onclick="updateAccountName()">Appliquer les changements</button>
+            </div>
+
+            <!-- BLOC 2 : SÉCURITÉ -->
+            <div class="config-card">
+                <div class="card-header">
+                    <h2>Sécurité d'Accès</h2>
+                    <p>Mise à jour du mot de passe crypté</p>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Nouveau Code d'Accès</label>
+                    <div class="input-container">
+                        <div class="input-icon"><i class="fa-solid fa-lock"></i></div>
+                        <input type="password" id="newPassInput" class="input-field" placeholder="••••••••••••">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Confirmation de Sécurité</label>
+                    <div class="input-container">
+                        <div class="input-icon"><i class="fa-solid fa-shield-check"></i></div>
+                        <input type="password" id="confirmPassInput" class="input-field" placeholder="••••••••••••">
+                    </div>
+                </div>
+
+                <button class="btn-action" onclick="updateAccountPassword()">Mettre à jour la sécurité</button>
+            </div>
+
+        </div>
+
+        <div style="margin-top: 50px; text-align: center; opacity: 0.3;">
+            <p style="font-size: 10px; text-transform: uppercase; letter-spacing: 2px;">PayFusion Gold Security Protocols v15.0</p>
+        </div>
+    </main>
+
+    <!-- WHATSAPP FLOATING VIP -->
+    <a href="https://wa.me/50939442808" target="_blank" style="position:fixed; bottom:30px; right:30px; background:#25D366; width:60px; height:60px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:white; font-size:30px; z-index:2000; box-shadow:0 10px 20px rgba(0,0,0,0.5);">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- 
+       ================================================================
+       PAYFUSION SETTINGS ENGINE (FIREBASE REAL-TIME)
+       ================================================================
+    -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged, updatePassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot, updateDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // CONFIGURATION FIREBASE OFFICIELLE WzX
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+
+        /* 
+           1. SURVEILLANCE DE SESSION ET CHARGEMENT DONNÉES 
+        */
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                onSnapshot(doc(db, "users", user.uid), (docSnap) => {
+                    if (docSnap.exists()) {
+                        const data = docSnap.data();
+                        document.getElementById('userNameInput').value = data.name;
+                        document.getElementById('userEmailInput').value = data.email;
+                    }
+                });
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+
+        /* 
+           2. MISE À JOUR DU NOM (FIRESTORE) 
+        */
+        window.updateAccountName = async () => {
+            const newName = document.getElementById('userNameInput').value;
+            if(!newName || newName.length < 2) return alert("Veuillez entrer un nom valide.");
+
+            try {
+                await updateDoc(doc(db, "users", currentUser.uid), { name: newName });
+                alert("Profil mis à jour avec succès.");
+            } catch (e) {
+                alert("Erreur lors de la mise à jour.");
+            }
+        };
+
+        /* 
+           3. MISE À JOUR DU MOT DE PASSE (AUTH) 
+        */
+        window.updateAccountPassword = async () => {
+            const p1 = document.getElementById('newPassInput').value;
+            const p2 = document.getElementById('confirmPassInput').value;
+
+            if (p1 !== p2) return alert("Les mots de passe ne correspondent pas.");
+            if (p1.length < 6) return alert("Le mot de passe doit contenir au moins 6 caractères.");
+
+            try {
+                await updatePassword(currentUser, p1);
+                alert("Mot de passe sécurisé. Veuillez vous reconnecter.");
+                window.location.href = "logout.html";
+            } catch (e) {
+                alert("Action Requise : Veuillez vous déconnecter et vous reconnecter avant de changer votre mot de passe (Sécurité Session).");
+            }
+        };
+
+        /* 
+           4. LOGIQUE MENU MOBILE 
+        */
+        window.toggleSidebar = () => {
+            document.getElementById('mainSidebar').classList.toggle('active');
+        };
+
+    </script>
+</body>
+</html>

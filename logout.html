@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Déconnexion Sécurisée | PayFusion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;900&display=swap" rel="stylesheet">
+    <style>
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; margin: 0; }
+        .logout-box { padding: 40px; border: 1px solid #111; }
+        .gold-spinner { width: 40px; height: 40px; border: 3px solid #111; border-top: 3px solid #D4AF37; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        h1 { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #D4AF37; }
+    </style>
+</head>
+<body>
+
+    <div class="logout-box">
+        <div class="gold-spinner"></div>
+        <h1>Sécurisation du coffre...</h1>
+        <p style="font-size: 10px; color: #444; margin-top: 10px; text-transform: uppercase; letter-spacing: 1px;">Déconnexion en cours</p>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        setTimeout(() => {
+            signOut(auth).then(() => {
+                localStorage.clear();
+                window.location.href = "login.html";
+            });
+        }, 2000); // 2 secondes pour l'effet luxe
+    </script>
+</body>
+</html>

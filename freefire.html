@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique Free Fire | PayFusion Gold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --gold-met: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #AA771C 100%);
+            --black-pure: #000;
+            --black-card: #080808;
+            --border-gold: #D4AF37;
+            --text-gold: #D4AF37;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+        body { background: var(--black-pure); color: white; overflow-x: hidden; }
+
+        /* HEADER GAMING */
+        .ff-header {
+            height: 250px; background: linear-gradient(to bottom, rgba(0,0,0,0.5), #000), url('https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070');
+            background-size: cover; background-position: center; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            border-bottom: 2px solid var(--border-gold);
+        }
+        .ff-main-logo { height: 100px; filter: drop-shadow(0 0 20px var(--border-gold)); margin-bottom: 15px; }
+        .ff-header h1 { font-size: 28px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; }
+
+        /* CONTENT */
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* GRID DES PRODUITS LUXE */
+        .packs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; margin-bottom: 50px; }
+        
+        .pack-item {
+            background: var(--black-card); border: 1px solid #1a1a1a; padding: 30px; text-align: center;
+            transition: 0.4s; position: relative; cursor: pointer; overflow: hidden;
+        }
+        .pack-item::before {
+            content: 'FREE FIRE'; position: absolute; top: -10px; left: -10px; font-size: 40px; font-weight: 900; color: rgba(212,175,55,0.03); z-index: 0;
+        }
+        .pack-item:hover { border-color: var(--border-gold); transform: translateY(-10px); box-shadow: 0 10px 30px rgba(212,175,55,0.1); }
+        .pack-item.active { border: 2px solid var(--border-gold); background: rgba(212,175,55,0.05); }
+
+        .pack-item img { height: 50px; margin-bottom: 20px; position: relative; z-index: 1; }
+        .pack-item h3 { font-size: 18px; font-weight: 800; margin-bottom: 10px; color: #fff; }
+        .pack-item .price { font-size: 14px; font-weight: 700; color: var(--text-gold); background: rgba(212,175,55,0.1); padding: 5px 15px; display: inline-block; border-radius: 20px; }
+
+        /* FORMULAIRE DE COMMANDE PRO */
+        .order-section {
+            display: grid; grid-template-columns: 1fr 350px; gap: 40px; background: #050505; padding: 40px; border: 1px solid #111;
+        }
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-gold); margin-bottom: 10px; }
+        .ff-input { width: 100%; padding: 15px; background: #000; border: 1px solid #222; color: #fff; font-weight: 700; transition: 0.3s; }
+        .ff-input:focus { border-color: var(--border-gold); }
+
+        .summary-box { background: var(--black-pure); border: 1px solid var(--border-gold); padding: 30px; text-align: center; }
+        .summary-box h2 { font-size: 32px; font-weight: 900; color: var(--text-gold); margin-bottom: 20px; }
+        .btn-checkout { width: 100%; padding: 20px; background: var(--gold-met); color: #000; border: none; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; }
+
+        @media (max-width: 768px) { .order-section { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="ff-header">
+        <img src="assets/logos/freefire-logo.png" alt="Free Fire" class="ff-main-logo">
+        <h1>DIAMOND CENTER</h1>
+    </div>
+
+    <div class="container">
+        <div class="packs-grid" id="packsGrid">
+            <!-- Injecté par JS -->
+        </div>
+
+        <div class="order-section">
+            <div class="inputs-side">
+                <div class="input-group">
+                    <label>Identifiant Joueur (Player ID)</label>
+                    <input type="text" id="playerId" class="ff-input" placeholder="ID du compte">
+                </div>
+                <div class="input-group">
+                    <label>Nom du Joueur</label>
+                    <input type="text" id="playerName" class="ff-input" placeholder="Nom du compte">
+                </div>
+                <div class="input-group">
+                    <label>Numéro WhatsApp</label>
+                    <input type="text" id="playerWA" class="ff-input" placeholder="+509 ...">
+                </div>
+            </div>
+
+            <div class="summary-side">
+                <div class="summary-box">
+                    <p style="font-size: 10px; letter-spacing: 2px; color: #444; margin-bottom: 10px;">TOTAL À PAYER</p>
+                    <h2 id="totalPrice">0 HTG</h2>
+                    <button class="btn-checkout" onclick="confirmPurchase()">CONFIRMER</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        const packs = [
+            { id: 1, name: "100 + 10 💎", price: 165 },
+            { id: 2, name: "200 + 20 💎", price: 340 },
+            { id: 3, name: "310 + 31 💎", price: 490 },
+            { id: 4, name: "420 + 42 💎", price: 650 },
+            { id: 5, name: "520 + 52 💎", price: 810 },
+            { id: 20, name: "5600 + 560 💎", price: 8000 },
+            { id: 21, name: "Abonnement Mois", price: 1600 }
+        ];
+
+        let selectedPrice = 0;
+        const grid = document.getElementById('packsGrid');
+
+        packs.forEach(p => {
+            const div = document.createElement('div');
+            div.className = 'pack-item';
+            div.innerHTML = `
+                <img src="assets/logos/freefire-logo.png">
+                <h3>${p.name}</h3>
+                <div class="price">${p.price} HTG</div>
+            `;
+            div.onclick = () => {
+                document.querySelectorAll('.pack-item').forEach(x => x.classList.remove('active'));
+                div.classList.add('active');
+                selectedPrice = p.price;
+                document.getElementById('totalPrice').innerText = p.price + " HTG";
+            };
+            grid.appendChild(div);
+        });
+
+        window.confirmPurchase = () => {
+            if(selectedPrice === 0) return alert("Veuillez choisir un pack.");
+            alert("Redirection vers le paiement...");
+            // Logique Firebase à ajouter ici
+        };
+    </script>
+</body>
+</html>

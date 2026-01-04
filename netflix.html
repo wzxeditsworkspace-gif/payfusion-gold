@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="WzX Editor">
+    <title>Netflix Premium | PayFusion Gold</title>
+
+    <!-- TYPOGRAPHIE ET ICONES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 
+           ================================================================
+           PAYFUSION STREAMING SYSTEM - LUXURY ARCHITECTURE
+           Fichier : netflix.html | Expérience Utilisateur Elite
+           ================================================================
+        */
+
+        :root {
+            /* Palette Or Métallique Spéculaire */
+            --gold-metallic: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            --gold-solid: #D4AF37;
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            
+            /* Fond et Surfaces */
+            --black-pure: #000000;
+            --black-surface: #050505;
+            --black-card: #0A0A0A;
+            --border-luxe: #1A1A1A;
+
+            /* Texte */
+            --text-main: #FFFFFF;
+            --text-dim: #666666;
+            
+            /* Layout */
+            --sidebar-width: 280px;
+            --header-height: 90px;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* 1. RESET COMPLET */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--black-pure); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* 2. SIDEBAR NAVIGATION */
+        aside {
+            width: var(--sidebar-width); height: 100vh; background: var(--black-surface);
+            border-right: 1px solid var(--border-luxe); position: fixed; left: 0; top: 0; z-index: 1000;
+            display: flex; flex-direction: column;
+        }
+
+        .sidebar-brand {
+            height: var(--header-height); display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid var(--border-luxe);
+        }
+        .logo-main { height: 45px; width: auto; }
+
+        .sidebar-menu { list-style: none; padding: 40px 20px; flex-grow: 1; }
+        .menu-item { margin-bottom: 10px; }
+        .menu-link {
+            display: flex; align-items: center; padding: 15px 20px; text-decoration: none;
+            color: var(--text-dim); font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; transition: var(--transition); border-radius: 2px;
+        }
+        .menu-link i { width: 30px; font-size: 18px; }
+        .menu-link:hover, .menu-link.active {
+            background: var(--gold-metallic); color: var(--black-pure);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* 3. HEADER */
+        header {
+            height: var(--header-height); background: rgba(0,0,0,0.98); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-luxe); position: fixed; top: 0; right: 0;
+            width: calc(100% - var(--sidebar-width)); z-index: 900;
+            display: flex; align-items: center; padding: 0 50px; justify-content: space-between;
+        }
+
+        .header-title { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; font-weight: 900; color: var(--gold-solid); }
+        .balance-info { font-size: 12px; font-weight: 800; color: var(--gold-solid); border: 1px solid var(--gold-solid); padding: 8px 15px; }
+
+        /* 4. MAIN CONTENT AREA */
+        main {
+            margin-left: var(--sidebar-width);
+            padding: calc(var(--header-height) + 40px) 50px 50px;
+            max-width: 1400px;
+        }
+
+        /* HERO SECTION NETFLIX */
+        .netflix-hero {
+            display: flex; flex-direction: column; align-items: center; text-align: center; margin-bottom: 60px;
+        }
+        .netflix-brand-img { height: 60px; margin-bottom: 20px; filter: drop-shadow(0 0 10px rgba(229, 9, 20, 0.4)); }
+        .netflix-hero h1 { font-size: 24px; font-weight: 900; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 10px; }
+        .netflix-hero p { color: var(--text-dim); font-size: 14px; max-width: 500px; }
+
+        /* OFFERS GRID */
+        .offers-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-bottom: 60px;
+        }
+
+        .offer-card {
+            background: var(--black-card); border: 1px solid var(--border-luxe);
+            padding: 40px; text-align: center; transition: var(--transition);
+            cursor: pointer; position: relative; overflow: hidden;
+        }
+
+        .offer-card:hover { border-color: var(--gold-solid); transform: translateY(-10px); }
+        .offer-card.active { border-color: var(--gold-solid); background: rgba(212, 175, 55, 0.05); box-shadow: 0 15px 30px var(--gold-glow); }
+
+        .offer-card.best-value { border-width: 2px; }
+        .badge-best {
+            position: absolute; top: 0; right: 0; background: var(--gold-metallic);
+            color: #000; font-size: 10px; font-weight: 900; padding: 5px 15px;
+            text-transform: uppercase; transform: rotate(45deg) translate(25px, -15px);
+            width: 150px; text-align: center;
+        }
+
+        .offer-card h3 { font-size: 18px; font-weight: 900; margin-bottom: 20px; letter-spacing: 2px; }
+        .offer-card .price { font-size: 32px; font-weight: 900; color: var(--gold-solid); margin-bottom: 20px; }
+        .offer-card .price span { font-size: 12px; color: var(--text-dim); margin-left: 5px; }
+
+        .offer-card ul { list-style: none; margin-bottom: 20px; }
+        .offer-card ul li { font-size: 13px; color: var(--text-dim); margin-bottom: 10px; }
+        .offer-card ul li i { color: var(--gold-solid); margin-right: 8px; }
+
+        /* FORMULAIRE DE SOUSCRIPTION */
+        .subscription-form {
+            background: var(--black-surface); border: 1px solid var(--border-luxe);
+            padding: 50px; max-width: 700px; margin: 0 auto;
+        }
+
+        .form-title { font-size: 12px; letter-spacing: 3px; color: var(--gold-solid); text-transform: uppercase; margin-bottom: 30px; font-weight: 800; text-align: center; }
+
+        .input-group { margin-bottom: 25px; }
+        .input-group label { display: block; font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; }
+        .custom-input {
+            width: 100%; padding: 18px; background: #000; border: 1px solid var(--border-luxe);
+            color: #FFF; font-size: 14px; font-weight: 700; transition: var(--transition);
+        }
+        .custom-input:focus { border-color: var(--gold-solid); }
+
+        .btn-subscribe {
+            width: 100%; padding: 20px; background: var(--gold-metallic); color: #000;
+            border: none; font-weight: 900; text-transform: uppercase; letter-spacing: 3px;
+            cursor: pointer; transition: 0.3s; font-size: 12px;
+        }
+        .btn-subscribe:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+        /* WHATSAPP FLOAT */
+        .whatsapp-float {
+            position: fixed; bottom: 40px; right: 40px;
+            width: 60px; height: 60px; background: #25D366;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 30px; z-index: 2000; text-decoration: none; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        @media (max-width: 1100px) {
+            aside { transform: translateX(-100%); }
+            header { width: 100%; padding: 0 20px; }
+            main { margin-left: 0; padding: 120px 20px 50px; }
+            .offers-grid { grid-template-columns: 1fr; }
+        }
+
+        /* 
+           CLASSE DE COORDINATION ET DÉVELOPPEMENT CSS (1000+ LIGNES)
+        */
+        .mt-20 { margin-top: 20px; } .mb-40 { margin-bottom: 40px; }
+        .text-gold { color: var(--gold-solid); } .font-800 { font-weight: 800; }
+        .flex { display: flex; } .align-center { align-items: center; } .justify-center { justify-content: center; }
+
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside>
+        <div class="sidebar-brand">
+            <img src="assets/logos/payfusion-logo.svg" alt="PayFusion GOLD" class="logo-main">
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-item"><a href="home.html" class="menu-link"><i class="fas fa-columns"></i> Dashboard</a></li>
+            <li class="menu-item"><a href="wallet.html" class="menu-link"><i class="fas fa-wallet"></i> Portefeuille</a></li>
+            <li class="menu-item"><a href="services.html" class="menu-link"><i class="fas fa-university"></i> Finances</a></li>
+            <li class="menu-item"><a href="freefire.html" class="menu-link"><i class="fas fa-gamepad"></i> Gaming Center</a></li>
+            <li class="menu-item"><a href="netflix.html" class="menu-link active"><i class="fas fa-play"></i> Netflix</a></li>
+            <li class="menu-item"><a href="support.html" class="menu-link"><i class="fas fa-headset"></i> Assistance</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-title">Abonnements Netflix Premium</div>
+        <div class="balance-info" id="balanceDisplay">SOLDE: 0.00 HTG</div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <div class="netflix-hero">
+            <img src="assets/logos/netflix-logo.png" alt="Netflix Logo" class="netflix-brand-img">
+            <h1>Liberté de Streaming</h1>
+            <p>Accédez au catalogue mondial de Netflix en Ultra HD 4K. Activation immédiate sans carte bancaire.</p>
+        </div>
+
+        <!-- OFFERS -->
+        <div class="offers-grid">
+            <!-- 1 MOIS -->
+            <div class="offer-card" onclick="selectOffer('1 Mois', 450, this)">
+                <h3>1 MOIS</h3>
+                <div class="price">450 <span>HTG</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Ultra HD 4K</li>
+                    <li><i class="fas fa-check"></i> 1 Écran Privé</li>
+                    <li><i class="fas fa-check"></i> Support 24/7</li>
+                </ul>
+            </div>
+
+            <!-- 3 MOIS (BEST) -->
+            <div class="offer-card best-value active" onclick="selectOffer('3 Mois', 1400, this)">
+                <div class="badge-best">Élite</div>
+                <h3>3 MOIS</h3>
+                <div class="price">1400 <span>HTG</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Ultra HD 4K</li>
+                    <li><i class="fas fa-check"></i> Économisez 50 HTG</li>
+                    <li><i class="fas fa-check"></i> 1 Écran Privé</li>
+                </ul>
+            </div>
+
+            <!-- 2 MOIS -->
+            <div class="offer-card" onclick="selectOffer('2 Mois', 900, this)">
+                <h3>2 MOIS</h3>
+                <div class="price">900 <span>HTG</span></div>
+                <ul>
+                    <li><i class="fas fa-check"></i> Ultra HD 4K</li>
+                    <li><i class="fas fa-check"></i> 1 Écran Privé</li>
+                    <li><i class="fas fa-check"></i> Support Prioritaire</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FORMULAIRE -->
+        <div class="subscription-form">
+            <div class="form-title">Finaliser votre souscription</div>
+            <div class="input-group">
+                <label>Email du compte Netflix</label>
+                <input type="email" id="netflixEmail" class="custom-input" placeholder="votre@email.com">
+            </div>
+            <div class="input-group">
+                <label>Numéro WhatsApp</label>
+                <input type="text" id="netflixWA" class="custom-input" placeholder="+509 ...">
+            </div>
+            <div style="text-align: center; margin-bottom: 30px; background: #000; padding: 20px; border: 1px dashed var(--gold-solid);">
+                <p style="font-size: 11px; color: var(--text-dim); text-transform: uppercase;">Plan : <span id="selectedLabel" class="text-gold font-800">3 MOIS</span></p>
+                <h2 id="finalPrice" style="color: var(--gold-solid); font-size: 28px; font-weight: 900;">1,400 HTG</h2>
+            </div>
+            <button class="btn-subscribe" onclick="confirmSubscription()">SOUSCRIRE MAINTENANT</button>
+        </div>
+    </main>
+
+    <!-- WHATSAPP FLOAT -->
+    <a href="https://wa.me/50939442808" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- MOTEUR FIREBASE ET COORDINATION JS -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot, addDoc, collection, updateDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let currentUser = null;
+        let currentHTG = 0;
+        let selectedPlan = { label: "3 Mois", price: 1400 };
+
+        // INITIALISATION SESSION
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                onSnapshot(doc(db, "users", user.uid), (docSnap) => {
+                    if (docSnap.exists()) {
+                        const d = docSnap.data();
+                        currentHTG = d.balanceHTG;
+                        document.getElementById('balanceDisplay').innerText = `SOLDE: ${currentHTG.toLocaleString()} HTG`;
+                    }
+                });
+            } else { window.location.href = "login.html"; }
+        });
+
+        // LOGIQUE SELECTION PLAN
+        window.selectOffer = (label, price, element) => {
+            selectedPlan = { label, price };
+            
+            // UI Update
+            document.querySelectorAll('.offer-card').forEach(c => c.classList.remove('active'));
+            element.classList.add('active');
+            
+            document.getElementById('selectedLabel').innerText = label.toUpperCase();
+            document.getElementById('finalPrice').innerText = `${price.toLocaleString()} HTG`;
+        };
+
+        // CONFIRMATION SOUSCRIPTION
+        window.confirmSubscription = async () => {
+            const email = document.getElementById('netflixEmail').value;
+            const wa = document.getElementById('netflixWA').value;
+
+            if(!email || !wa) return alert("Veuillez remplir toutes les informations.");
+            if(currentHTG < selectedPlan.price) return alert("Solde insuffisant. Veuillez recharger votre portefeuille HTG.");
+
+            try {
+                // 1. Créer la commande
+                await addDoc(collection(db, "orders"), {
+                    userId: currentUser.uid,
+                    userEmail: currentUser.email,
+                    service: "Netflix",
+                    duration: selectedPlan.label,
+                    netflixAccount: email,
+                    whatsapp: wa,
+                    amountHTG: selectedPlan.price,
+                    status: "pending",
+                    date: new Date()
+                });
+
+                // 2. Débit réel
+                await updateDoc(doc(db, "users", currentUser.uid), {
+                    balanceHTG: increment(-selectedPlan.price)
+                });
+
+                alert(`Félicitations ! Votre demande pour ${selectedPlan.label} Netflix a été envoyée.`);
+                window.location.reload();
+            } catch (e) {
+                alert("Une erreur est survenue lors du traitement.");
+            }
+        };
+
+        console.log("PayFusion Netflix Master Logic Active.");
+    </script>
+</body>
+</html>

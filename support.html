@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="WzX Editor">
+    <title>Assistance & Légal | PayFusion Gold</title>
+
+    <!-- TYPOGRAPHIE ET ICONES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 
+           ================================================================
+           PAYFUSION SUPPORT & LEGAL SYSTEM - LUXURY ARCHITECTURE
+           CONCEPTION : WzX EDITOR | COORDINATION SYSTÉMIQUE
+           ================================================================
+        */
+
+        :root {
+            --gold-metallic: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            --gold-solid: #D4AF37;
+            --black-pure: #000000;
+            --black-surface: #050505;
+            --black-card: #0A0A0A;
+            --border-luxe: #1A1A1A;
+            --text-main: #FFFFFF;
+            --text-dim: #888888;
+            
+            --sidebar-width: 280px;
+            --header-height: 90px;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        /* 1. RESET GLOBAL */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--black-pure); color: var(--text-main); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+        /* SCROLLBAR PRESTIGE */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--black-pure); }
+        ::-webkit-scrollbar-thumb { background: var(--gold-metallic); }
+
+        /* 2. SIDEBAR (ARCHITECTURE IDENTIQUE) */
+        aside {
+            width: var(--sidebar-width); height: 100vh; background: var(--black-surface);
+            border-right: 1px solid var(--border-luxe); position: fixed; left: 0; top: 0; z-index: 1000;
+            display: flex; flex-direction: column;
+        }
+
+        .sidebar-brand {
+            height: var(--header-height); display: flex; align-items: center; justify-content: center;
+            border-bottom: 1px solid var(--border-luxe);
+        }
+        .logo-main { height: 45px; width: auto; }
+
+        .sidebar-menu { list-style: none; padding: 40px 20px; flex-grow: 1; }
+        .menu-item { margin-bottom: 10px; }
+        .menu-link {
+            display: flex; align-items: center; padding: 15px 20px; text-decoration: none;
+            color: var(--text-dim); font-size: 11px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; transition: var(--transition); border-radius: 2px;
+        }
+        .menu-link i { width: 30px; font-size: 18px; }
+        .menu-link:hover, .menu-link.active {
+            background: var(--gold-metallic); color: var(--black-pure);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        /* 3. HEADER */
+        header {
+            height: var(--header-height); background: rgba(0,0,0,0.98); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-luxe); position: fixed; top: 0; right: 0;
+            width: calc(100% - var(--sidebar-width)); z-index: 900;
+            display: flex; align-items: center; padding: 0 50px; justify-content: space-between;
+        }
+        .header-title { font-size: 12px; letter-spacing: 4px; text-transform: uppercase; font-weight: 900; color: var(--gold-solid); }
+
+        /* 4. MAIN CONTENT */
+        main {
+            margin-left: var(--sidebar-width);
+            padding: calc(var(--header-height) + 50px) 50px 50px;
+            max-width: 1200px;
+        }
+
+        .support-container { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
+
+        /* FAQ STYLE */
+        .faq-section h2, .legal-section h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 3px; color: var(--gold-solid); margin-bottom: 30px; }
+        
+        .faq-item { background: var(--black-card); border: 1px solid var(--border-luxe); margin-bottom: 15px; transition: var(--transition); }
+        .faq-question { padding: 20px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 13px; font-weight: 700; }
+        .faq-question i { color: var(--gold-solid); transition: 0.3s; }
+        .faq-answer { padding: 0 20px; max-height: 0; overflow: hidden; transition: var(--transition); color: var(--text-dim); font-size: 12px; line-height: 1.8; }
+        
+        .faq-item.active { border-color: var(--gold-solid); }
+        .faq-item.active .faq-answer { padding: 0 20px 20px 20px; max-height: 200px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        /* LEGAL SECTION */
+        .legal-content { background: var(--black-surface); border: 1px solid var(--border-luxe); padding: 30px; max-height: 600px; overflow-y: auto; }
+        .legal-text h3 { font-size: 12px; color: var(--gold-solid); margin: 25px 0 10px 0; text-transform: uppercase; }
+        .legal-text p { font-size: 12px; color: var(--text-dim); margin-bottom: 15px; line-height: 1.6; }
+
+        /* WHATSAPP CONTACT CARD */
+        .contact-vip {
+            background: var(--gold-metallic); padding: 30px; margin-top: 50px; display: flex; align-items: center; justify-content: space-between;
+            color: #000; border-radius: 2px;
+        }
+        .contact-vip h3 { font-size: 18px; font-weight: 900; text-transform: uppercase; }
+        .btn-wa-vip { background: #000; color: #FFF; padding: 12px 25px; text-decoration: none; font-size: 11px; font-weight: 800; border-radius: 2px; text-transform: uppercase; }
+
+        @media (max-width: 1100px) {
+            aside { transform: translateX(-100%); }
+            header { width: 100%; padding: 0 20px; }
+            main { margin-left: 0; padding: 120px 20px 50px; }
+            .support-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <aside>
+        <div class="sidebar-brand">
+            <img src="assets/logos/payfusion-logo.svg" alt="PayFusion GOLD" class="logo-main">
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-item"><a href="home.html" class="menu-link"><i class="fas fa-columns"></i> Dashboard</a></li>
+            <li class="menu-item"><a href="wallet.html" class="menu-link"><i class="fas fa-wallet"></i> Portefeuille</a></li>
+            <li class="menu-item"><a href="services.html" class="menu-link"><i class="fas fa-university"></i> Finances</a></li>
+            <li class="menu-item"><a href="freefire.html" class="menu-link"><i class="fas fa-gamepad"></i> Gaming Center</a></li>
+            <li class="menu-item"><a href="netflix.html" class="menu-link"><i class="fas fa-play"></i> Streaming</a></li>
+            <li class="menu-item"><a href="support.html" class="menu-link active"><i class="fas fa-headset"></i> Assistance</a></li>
+        </ul>
+    </aside>
+
+    <!-- HEADER -->
+    <header>
+        <div class="header-title">CENTRE DE CONFIANCE & AIDE</div>
+    </header>
+
+    <main>
+        <div class="support-container">
+            <!-- FAQ SECTION -->
+            <section class="faq-section">
+                <h2>Questions Fréquentes</h2>
+                
+                <div class="faq-item">
+                    <div class="faq-question">Comment recharger mon compte ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Utilisez l'onglet 'Wallet' pour effectuer un dépôt via MonCash ou NatCash. Envoyez le montant aux numéros indiqués et soumettez votre ID de transaction.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Quels sont les délais de livraison ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Les diamants Free Fire sont livrés en moins de 15 minutes après validation. Les comptes Netflix et les transferts Wise/PayPal prennent entre 30 minutes et 2 heures.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Mon paiement est-il sécurisé ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Oui, PayFusion utilise l'infrastructure Firebase de Google pour sécuriser vos données. Toutes les transactions sont vérifiées manuellement par notre équipe.</div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Que faire en cas d'ID erroné ? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Contactez immédiatement notre support WhatsApp avec votre preuve de commande. Si les diamants n'ont pas encore été envoyés, nous rectifierons l'ID.</div>
+                </div>
+            </section>
+
+            <!-- LEGAL SECTION -->
+            <section class="legal-section">
+                <h2>Légal & Confidentialité</h2>
+                <div class="legal-content">
+                    <div class="legal-text">
+                        <h3>1. Conditions d'Utilisation</h3>
+                        <p>En utilisant PayFusion Gold, vous acceptez que toutes les transactions financières soient définitives. L'utilisateur est responsable de l'exactitude des informations fournies (ID Free Fire, Email Wise).</p>
+                        
+                        <h3>2. Politique de Remboursement</h3>
+                        <p>Aucun remboursement n'est possible une fois que le service a été livré (Diamants envoyés ou Transfert Wise effectué). En cas d'échec de notre part, le montant est recrédité sur votre wallet PayFusion.</p>
+                        
+                        <h3>3. Protection des Données</h3>
+                        <p>Nous ne partageons aucune de vos données personnelles avec des tiers. Vos informations de connexion et vos numéros de téléphone sont utilisés exclusivement pour le traitement de vos commandes.</p>
+                        
+                        <h3>4. Responsabilité</h3>
+                        <p>PayFusion n'est pas affilié à Garena (Free Fire) ou Netflix. Nous agissons en tant qu'intermédiaire de paiement indépendant en Haïti.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CONTACT VIP -->
+        <div class="contact-vip">
+            <div>
+                <h3>Besoin d'aide immédiate ?</h3>
+                <p style="font-size: 12px; font-weight: 500;">Notre support WhatsApp VIP est disponible 24/7 pour vous accompagner.</p>
+            </div>
+            <a href="https://wa.me/50939442808" class="btn-wa-vip" target="_blank">Ouvrir WhatsApp</a>
+        </div>
+    </main>
+
+    <!-- LOGIQUE JAVASCRIPT ACCORDÉONS -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Vérification session
+        onAuthStateChanged(auth, (user) => {
+            if (!user) window.location.href = "login.html";
+        });
+
+        // Gestion des accordéons FAQ
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+
+        console.log("PayFusion Support Engine Active.");
+    </script>
+</body>
+</html>

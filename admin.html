@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="author" content="WzX Editor">
+    <title>PayFusion Gold | Administration System</title>
+
+    <!-- TYPOGRAPHIE : INTER -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 
+           ================================================================
+           PAYFUSION ADMIN DESIGN SYSTEM V8.0 - LUXE ET ORDRE
+           DÉVELOPPÉ POUR : WzX EDITOR
+           ================================================================
+        */
+
+        :root {
+            /* Palette Gold Métallique Spéculaire */
+            --gold-specular: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
+            --gold-solid: #D4AF37;
+            --gold-dim: #8A6623;
+            
+            /* Fond et Surfaces */
+            --black-pure: #000000;
+            --black-surface: #050505;
+            --black-card: #0A0A0A;
+            --border-luxe: #1A1A1A;
+
+            /* Texte et Statuts */
+            --text-main: #FFFFFF;
+            --text-dim: #666666;
+            --success: #00FF66;
+            --danger: #FF3333;
+            
+            /* Géométrie */
+            --sidebar-w: 280px;
+            --header-h: 90px;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        /* 1. RESET SANS CONCESSION */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        
+        body { 
+            background-color: var(--black-pure); 
+            color: var(--text-main); 
+            font-family: 'Inter', sans-serif; 
+            font-size: 13px;
+            overflow-x: hidden;
+            display: flex;
+        }
+
+        /* 2. SIDEBAR - ARCHITECTURE RIGIDE */
+        aside {
+            width: var(--sidebar-w);
+            height: 100vh;
+            background: var(--black-surface);
+            border-right: 1px solid var(--border-luxe);
+            position: fixed;
+            left: 0; top: 0;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+        }
+
+        .brand-zone {
+            height: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-luxe);
+        }
+
+        .brand-text {
+            font-weight: 900;
+            letter-spacing: 4px;
+            background: var(--gold-specular);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 18px;
+            text-transform: uppercase;
+        }
+
+        .admin-nav {
+            list-style: none;
+            padding: 40px 20px;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 16px 20px;
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: var(--transition);
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+        }
+
+        .nav-link i { width: 30px; font-size: 16px; }
+        .nav-link:hover, .nav-link.active {
+            background: var(--gold-specular);
+            color: var(--black-pure);
+            border-color: var(--gold-solid);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.1);
+        }
+
+        .exit-link {
+            padding: 30px 20px;
+            border-top: 1px solid var(--border-luxe);
+            text-decoration: none;
+            color: var(--danger);
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+        }
+        .exit-link i { margin-right: 15px; }
+
+        /* 3. MAIN AREA - GESTION DU LAYOUT */
+        main {
+            margin-left: var(--sidebar-w);
+            width: calc(100% - var(--sidebar-w));
+            min-height: 100vh;
+            padding: 0 50px 50px 50px;
+        }
+
+        header {
+            height: var(--header-h);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border-luxe);
+        }
+
+        .page-title {
+            font-size: 14px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold-solid);
+        }
+
+        /* 4. STATS GRID - ALIGNEMENT PARFAIT */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: var(--black-card);
+            border: 1px solid var(--border-luxe);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--gold-specular);
+        }
+
+        .stat-label { font-size: 10px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
+        .stat-value { font-size: 28px; font-weight: 900; color: var(--gold-solid); }
+
+        /* 5. TABLEAU - ORDRE ET CLARTÉ */
+        .content-section {
+            background: var(--black-surface);
+            border: 1px solid var(--border-luxe);
+            margin-bottom: 50px;
+            padding: 40px;
+        }
+
+        .section-heading {
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-heading h2 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold-solid);
+            white-space: nowrap;
+        }
+
+        .heading-line {
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--gold-solid), transparent);
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        thead th {
+            padding: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            border-bottom: 1px solid var(--border-luxe);
+        }
+
+        tbody td {
+            padding: 20px;
+            border-bottom: 1px solid #0f0f0f;
+            color: var(--text-main);
+            font-size: 12px;
+        }
+
+        /* ACTIONS BUTTONS */
+        .btn-group { display: flex; gap: 10px; }
+        .btn {
+            padding: 10px 18px;
+            font-size: 10px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-validate { background: var(--success); color: #000; }
+        .btn-reject { background: var(--danger); color: #FFF; }
+        .btn-edit { background: var(--gold-solid); color: #000; }
+        .btn:hover { filter: brightness(1.2); transform: translateY(-2px); }
+
+        /* 6. MODAL GESTION CLIENTS */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none; align-items: center; justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-box {
+            background: var(--black-surface);
+            border: 1px solid var(--gold-solid);
+            width: 100%;
+            max-width: 450px;
+            padding: 50px;
+        }
+
+        .modal-box h3 {
+            font-size: 16px; text-transform: uppercase; letter-spacing: 3px;
+            color: var(--gold-solid); margin-bottom: 30px; text-align: center;
+        }
+
+        .input-wrap { margin-bottom: 25px; }
+        .input-wrap label { display: block; font-size: 10px; text-transform: uppercase; color: var(--text-dim); margin-bottom: 10px; }
+        .admin-input {
+            width: 100%; padding: 15px; background: #000; border: 1px solid var(--border-luxe);
+            color: #FFF; font-weight: 700; font-size: 14px;
+        }
+        .admin-input:focus { border-color: var(--gold-solid); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1200px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 900px) {
+            aside { transform: translateX(-100%); }
+            main { margin-left: 0; width: 100%; padding: 0 20px 20px 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+        }
+
+        /* DENSITY CLASSES (UTILITY) */
+        .m-t-20 { margin-top: 20px; } .m-b-40 { margin-bottom: 40px; }
+        .text-gold { color: var(--gold-solid); } .font-bold { font-weight: 800; }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR ADMIN -->
+    <aside>
+        <div class="brand-zone">
+            <span class="brand-text">PayFusion</span>
+        </div>
+        <nav class="admin-nav">
+            <a href="#" class="nav-link active"><i class="fas fa-terminal"></i> Console</a>
+            <a href="#trans-sec" class="nav-link"><i class="fas fa-university"></i> Flux Dépôts</a>
+            <a href="#orders-sec" class="nav-link"><i class="fas fa-shopping-bag"></i> Flux Commandes</a>
+            <a href="#users-sec" class="nav-link"><i class="fas fa-user-crown"></i> Utilisateurs</a>
+            <a href="settings.html" class="nav-link"><i class="fas fa-cogs"></i> Configuration</a>
+        </nav>
+        <a href="home.html" class="exit-link"><i class="fas fa-door-open"></i> Quitter l'admin</a>
+    </aside>
+
+    <!-- MAIN DASHBOARD -->
+    <main>
+        <header>
+            <div class="page-title">Panneau de contrôle souverain</div>
+            <div id="adminStatus" style="font-size: 10px; font-weight: 900; letter-spacing: 2px; color: var(--success); text-transform: uppercase;">● Système en ligne</div>
+        </header>
+
+        <!-- STATS PANELS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-label">Clients Totaux</div>
+                <div class="stat-value" id="countUsers">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Dépôts en attente</div>
+                <div class="stat-value" id="countPendingDep">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Commandes actives</div>
+                <div class="stat-value" id="countPendingOrders">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Volume Transactions</div>
+                <div class="stat-value">PREMIUM</div>
+            </div>
+        </div>
+
+        <!-- TRANSACTIONS SECTION -->
+        <section class="content-section" id="trans-sec">
+            <div class="section-heading">
+                <h2>Flux des Dépôts de fonds</h2>
+                <div class="heading-line"></div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Email Client</th>
+                            <th>Méthode</th>
+                            <th>Montant</th>
+                            <th>Preuve / Référence</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsList">
+                        <!-- INJECTÉ PAR FIREBASE -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ORDERS SECTION -->
+        <section class="content-section" id="orders-sec">
+            <div class="section-heading">
+                <h2>Flux des Commandes Services</h2>
+                <div class="heading-line"></div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Service</th>
+                            <th>Cible (ID/Email)</th>
+                            <th>WhatsApp</th>
+                            <th>Montant HTG</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersList">
+                        <!-- INJECTÉ PAR FIREBASE -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- USERS SECTION -->
+        <section class="content-section" id="users-sec">
+            <div class="section-heading">
+                <h2>Registre des comptes clients</h2>
+                <div class="heading-line"></div>
+            </div>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom complet</th>
+                            <th>Email</th>
+                            <th>Balance HTG</th>
+                            <th>Balance USD</th>
+                            <th>Gestion</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersList">
+                        <!-- INJECTÉ PAR FIREBASE -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL EDIT BALANCE -->
+    <div class="modal-overlay" id="editModal">
+        <div class="modal-box">
+            <h3 id="modalUserName">Ajuster la Balance</h3>
+            <div class="input-wrap">
+                <label>Nouveau solde HTG</label>
+                <input type="number" id="newHTG" class="admin-input">
+            </div>
+            <div class="input-wrap">
+                <label>Nouveau solde USD</label>
+                <input type="number" id="newUSD" class="admin-input">
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-edit" style="flex: 1;" onclick="updateUserBalances()">Mettre à jour</button>
+                <button class="btn btn-reject" style="flex: 1;" onclick="closeModal()">Annuler</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MOTEUR DE COORDINATION FIREBASE ADMIN -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, doc, updateDoc, deleteDoc, increment } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Configuration Firebase (Marco Bien-Aimé / WzX Editor)
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        let selectedUid = null;
+
+        // PROTECTION ADMIN STRICTE
+        onAuthStateChanged(auth, (user) => {
+            if (!user || user.email !== "payfusion@admin.com") {
+                window.location.href = "login.html";
+            }
+        });
+
+        /* 
+           1. SYNCHRONISATION DES DÉPÔTS (MONCASH / NATCASH)
+        */
+        onSnapshot(collection(db, "transactions"), (snap) => {
+            const list = document.getElementById('transactionsList');
+            list.innerHTML = "";
+            let pCount = 0;
+            snap.forEach(d => {
+                const tx = d.data();
+                if(tx.status === "pending") {
+                    pCount++;
+                    list.innerHTML += `
+                        <tr>
+                            <td class="font-bold">${tx.userEmail}</td>
+                            <td><span style="color:var(--gold-solid); font-weight:800">${tx.method.toUpperCase()}</span></td>
+                            <td class="font-bold">${tx.amount.toLocaleString()} HTG</td>
+                            <td style="color:var(--gold-solid)">${tx.proof}</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-validate" onclick="approveTx('${d.id}', '${tx.userId}', ${tx.amount})">Valider</button>
+                                    <button class="btn btn-reject" onclick="deleteReq('transactions', '${d.id}')">X</button>
+                                </div>
+                            </td>
+                        </tr>`;
+                }
+            });
+            document.getElementById('countPendingDep').innerText = pCount;
+        });
+
+        /* 
+           2. SYNCHRONISATION DES COMMANDES (FF / NETFLIX)
+        */
+        onSnapshot(collection(db, "orders"), (snap) => {
+            const list = document.getElementById('ordersList');
+            list.innerHTML = "";
+            let oCount = 0;
+            snap.forEach(d => {
+                const o = d.data();
+                if(o.status === "pending") {
+                    oCount++;
+                    list.innerHTML += `
+                        <tr>
+                            <td class="font-bold" style="color:var(--gold-solid)">${o.service}</td>
+                            <td>${o.playerID || o.netflixAccount}</td>
+                            <td><a href="https://wa.me/${o.whatsapp}" target="_blank" style="color:var(--success); text-decoration:none; font-weight:900;">${o.whatsapp} <i class="fab fa-whatsapp"></i></a></td>
+                            <td class="font-bold">${(o.totalHTG || o.amountHTG).toLocaleString()} HTG</td>
+                            <td>
+                                <div class="btn-group">
+                                    <button class="btn btn-validate" onclick="completeOrder('${d.id}')">Terminer</button>
+                                    <button class="btn btn-reject" onclick="deleteReq('orders', '${d.id}')">X</button>
+                                </div>
+                            </td>
+                        </tr>`;
+                }
+            });
+            document.getElementById('countPendingOrders').innerText = oCount;
+        });
+
+        /* 
+           3. SYNCHRONISATION DES UTILISATEURS
+        */
+        onSnapshot(collection(db, "users"), (snap) => {
+            const list = document.getElementById('usersList');
+            list.innerHTML = "";
+            document.getElementById('countUsers').innerText = snap.size;
+            snap.forEach(d => {
+                const u = d.data();
+                list.innerHTML += `
+                    <tr>
+                        <td class="font-bold">${u.name}</td>
+                        <td>${u.email}</td>
+                        <td class="text-gold font-bold">${u.balanceHTG.toLocaleString()} HTG</td>
+                        <td>${u.balanceUSD.toLocaleString()} USD</td>
+                        <td>
+                            <button class="btn btn-edit" onclick="openModal('${d.id}', '${u.name}', ${u.balanceHTG}, ${u.balanceUSD})">Gérer</button>
+                        </td>
+                    </tr>`;
+            });
+        });
+
+        // ACTIONS LOGIQUES
+        window.approveTx = async (id, uid, amt) => {
+            if(confirm("Créditer ce montant sur le compte client ?")) {
+                await updateDoc(doc(db, "users", uid), { balanceHTG: increment(amt) });
+                await updateDoc(doc(db, "transactions", id), { status: "completed" });
+            }
+        };
+
+        window.completeOrder = async (id) => {
+            if(confirm("Marquer cette commande comme livrée ?")) {
+                await updateDoc(doc(db, "orders", id), { status: "completed" });
+            }
+        };
+
+        window.deleteReq = async (coll, id) => {
+            if(confirm("Supprimer définitivement cette entrée ?")) {
+                await deleteDoc(doc(db, coll, id));
+            }
+        };
+
+        window.openModal = (id, name, htg, usd) => {
+            selectedUid = id;
+            document.getElementById('modalUserName').innerText = name;
+            document.getElementById('newHTG').value = htg;
+            document.getElementById('newUSD').value = usd;
+            document.getElementById('editModal').style.display = "flex";
+        };
+
+        window.updateUserBalances = async () => {
+            const h = parseFloat(document.getElementById('newHTG').value);
+            const u = parseFloat(document.getElementById('newUSD').value);
+            await updateDoc(doc(db, "users", selectedUid), { balanceHTG: h, balanceUSD: u });
+            closeModal();
+        };
+
+        window.closeModal = () => { document.getElementById('editModal').style.display = "none"; };
+
+        console.log("PayFusion Prestige Console Initialized.");
+    </script>
+</body>
+</html>

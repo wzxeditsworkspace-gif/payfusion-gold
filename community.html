@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communauté PayFusion | Gold Members</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --gold-met: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #AA771C 100%); --surface: #050505; --border: #111; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+        body { background: #000; color: white; display: flex; }
+        aside { width: 280px; height: 100vh; background: var(--surface); border-right: 1px solid var(--border); position: fixed; }
+        .nav-link { display: flex; align-items: center; padding: 15px 20px; text-decoration: none; color: #444; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
+        .nav-link.active { background: var(--gold-met); color: #000; font-weight: 800; }
+        main { margin-left: 280px; padding: 120px 50px; width: 100%; }
+        .comm-header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+        .comm-header h1 { font-size: 14px; text-transform: uppercase; letter-spacing: 4px; color: #D4AF37; }
+        .feed-container { display: grid; grid-template-columns: 1fr 300px; gap: 40px; }
+        .post-card { background: #080808; border: 1px solid var(--border); padding: 30px; margin-bottom: 20px; position: relative; }
+        .post-card::before { content: 'VERIFIED'; position: absolute; top: 10px; right: 10px; font-size: 8px; color: #00FF66; border: 1px solid #00FF66; padding: 2px 5px; }
+        .user-meta { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .user-avatar { width: 40px; height: 40px; background: var(--gold-met); border-radius: 50%; color: #000; display: flex; align-items: center; justify-content: center; font-weight: 900; }
+        .post-content { font-size: 13px; color: #888; line-height: 1.6; }
+        .post-content strong { color: #fff; }
+        .sidebar-stats { background: #050505; border: 1px solid var(--border); padding: 20px; height: fit-content; }
+        .sidebar-stats h3 { font-size: 10px; color: #D4AF37; text-transform: uppercase; margin-bottom: 20px; }
+        .stat-line { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 10px; color: #444; }
+        @media (max-width: 1024px) { aside { display:none; } main { margin-left: 0; padding: 80px 20px; } .feed-container { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <aside>
+        <div style="height:90px; border-bottom:1px solid #111; display:flex; align-items:center; justify-content:center;">
+            <span style="background: var(--gold-met); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; letter-spacing: 3px;">PAYFUSION</span>
+        </div>
+        <ul style="list-style:none; padding: 40px 20px;">
+            <li><a href="home.html" class="nav-link"><i class="fas fa-columns" style="width:30px;"></i> Dashboard</a></li>
+            <li><a href="community.html" class="nav-link active"><i class="fas fa-users" style="width:30px;"></i> Communauté</a></li>
+            <li><a href="support.html" class="nav-link"><i class="fas fa-headset" style="width:30px;"></i> Support</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="comm-header">
+            <h1>Activité du Réseau Gold</h1>
+        </div>
+
+        <div class="feed-container">
+            <div class="feed-posts" id="feedPosts">
+                <!-- POST EXEMPLE 1 -->
+                <div class="post-card">
+                    <div class="user-meta">
+                        <div class="user-avatar">M</div>
+                        <div>
+                            <div style="font-size:12px; font-weight:800;">M***809</div>
+                            <div style="font-size:10px; color:#444;">Il y a 5 minutes</div>
+                        </div>
+                    </div>
+                    <p class="post-content">Vient de recevoir <strong>5600 + 560 Diamants Free Fire</strong>. Service ultra rapide, merci WzX Editor ! 🇭🇹🔥</p>
+                </div>
+                <!-- POST EXEMPLE 2 -->
+                <div class="post-card">
+                    <div class="user-meta">
+                        <div class="user-avatar">J</div>
+                        <div>
+                            <div style="font-size:12px; font-weight:800;">J***_Paul</div>
+                            <div style="font-size:10px; color:#444;">Il y a 2 heures</div>
+                        </div>
+                    </div>
+                    <p class="post-content">Transfert <strong>Wise de 50 USD</strong> validé. Solde reçu sur mon compte en 30 minutes. PayFusion c'est du sérieux.</p>
+                </div>
+            </div>
+
+            <div class="sidebar-stats">
+                <h3>Statistiques Globales</h3>
+                <div class="stat-line"><span>Membres Actifs</span> <strong>+150</strong></div>
+                <div class="stat-line"><span>Commandes 24h</span> <strong>42</strong></div>
+                <div class="stat-line"><span>Statut Réseau</span> <strong style="color:#00FF66;">Online</strong></div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        // Ici tu pourrais ajouter une logique pour tirer les dernières commandes "completed" de Firestore 
+        // et les afficher automatiquement pour créer un mur de preuve sociale dynamique.
+    </script>
+</body>
+</html>

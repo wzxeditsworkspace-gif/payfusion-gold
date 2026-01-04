@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centre de Notifications | PayFusion Gold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold-met: linear-gradient(135deg, #BF953F 0%, #FCF6BA 50%, #AA771C 100%);
+            --black: #000;
+            --surface: #050505;
+            --border: #111;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; font-family:'Inter', sans-serif; }
+        body { background: var(--black); color: white; display: flex; }
+
+        /* SIDEBAR IDENTIQUE */
+        aside { width: 280px; height: 100vh; background: var(--surface); border-right: 1px solid var(--border); position: fixed; }
+        .sidebar-brand { height: 90px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+        .nav-list { list-style: none; padding: 40px 20px; }
+        .nav-link { display: flex; align-items: center; padding: 15px 20px; text-decoration: none; color: #444; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; }
+        .nav-link:hover, .nav-link.active { background: var(--gold-met); color: #000; font-weight: 800; }
+        .nav-link i { width: 30px; }
+
+        /* MAIN CONTENT */
+        main { margin-left: 280px; padding: 120px 50px; width: 100%; }
+
+        .notif-header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 40px; }
+        .notif-header h1 { font-size: 14px; text-transform: uppercase; letter-spacing: 4px; color: #D4AF37; }
+
+        /* NOTIFICATION CARDS */
+        .notif-list { display: flex; flex-direction: column; gap: 15px; }
+        .notif-item {
+            background: #080808; border: 1px solid var(--border); padding: 25px;
+            display: flex; gap: 20px; align-items: center; transition: 0.3s;
+        }
+        .notif-item:hover { border-color: #D4AF37; }
+        .notif-icon { width: 50px; height: 50px; background: rgba(212,175,55,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #D4AF37; }
+        .notif-content { flex-grow: 1; }
+        .notif-title { font-size: 13px; font-weight: 800; margin-bottom: 5px; }
+        .notif-body { font-size: 12px; color: #666; }
+        .notif-time { font-size: 10px; color: #333; margin-top: 10px; text-transform: uppercase; }
+
+        @media (max-width: 1024px) { aside { display:none; } main { margin-left: 0; padding: 100px 20px; } }
+    </style>
+</head>
+<body>
+
+    <aside>
+        <div class="sidebar-brand"><span style="background: var(--gold-met); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; letter-spacing: 3px;">PAYFUSION</span></div>
+        <ul class="nav-list">
+            <li><a href="home.html" class="nav-link"><i class="fas fa-columns"></i> Dashboard</a></li>
+            <li><a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i> Wallet</a></li>
+            <li><a href="account.html" class="nav-link"><i class="fas fa-user-circle"></i> Compte</a></li>
+            <li><a href="notifications.html" class="nav-link active"><i class="fas fa-bell"></i> Alertes</a></li>
+            <li><a href="logout.html" class="nav-link" style="color: #FF3333;"><i class="fas fa-power-off"></i> Quitter</a></li>
+        </ul>
+    </aside>
+
+    <main>
+        <div class="notif-header">
+            <h1>Journal des Alertes</h1>
+        </div>
+
+        <div class="notif-list" id="notifList">
+            <!-- Exemple Notification Système -->
+            <div class="notif-item">
+                <div class="notif-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="notif-content">
+                    <div class="notif-title">Bienvenue sur PayFusion Gold</div>
+                    <div class="notif-body">Votre compte est désormais actif. Vous pouvez effectuer votre premier dépôt.</div>
+                    <div class="notif-time">Système ● À l'instant</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // Écouter les notifications spécifiques à cet utilisateur
+                const q = query(collection(db, "notifications"), where("userId", "==", user.uid));
+                onSnapshot(q, (snap) => {
+                    const list = document.getElementById('notifList');
+                    snap.forEach(doc => {
+                        const n = doc.data();
+                        list.innerHTML += `
+                            <div class="notif-item">
+                                <div class="notif-icon"><i class="fas fa-bell"></i></div>
+                                <div class="notif-content">
+                                    <div class="notif-title">${n.title}</div>
+                                    <div class="notif-body">${n.message}</div>
+                                    <div class="notif-time">${n.type} ● ${new Date(n.date.seconds * 1000).toLocaleDateString()}</div>
+                                </div>
+                            </div>
+                        `;
+                    });
+                });
+            } else { window.location.href = "login.html"; }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Connexion | PayFusion Gold</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* 
+           ================================================================
+           PAYFUSION LOGIN SYSTEM - LUXURY ARCHITECTURE
+           ================================================================
+        */
+        :root {
+            --gold-metallic: linear-gradient(135deg, #8A6623 0%, #D4AF37 25%, #F7EF8A 50%, #D4AF37 75%, #8A6623 100%);
+            --gold-mid: #D4AF37;
+            --black-pure: #000000;
+            --black-surface: #0A0A0A;
+            --border-color: #1A1A1A;
+            --error-red: #FF3333;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--black-pure); color: #FFF; font-family: 'Inter', sans-serif; display: flex; align-items: center; justify-content: center; height: 100vh; overflow: hidden; }
+
+        /* DESIGN DU CONTAINER */
+        .auth-card {
+            width: 100%; max-width: 420px; background: var(--black-surface); border: 1px solid var(--border-color);
+            padding: 50px; position: relative; animation: fadeIn 0.8s ease;
+        }
+
+        .auth-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--gold-metallic);
+        }
+
+        /* LOGO PLACEHOLDER */
+        .auth-logo { text-align: center; margin-bottom: 40px; }
+        .logo-box { height: 50px; display: flex; justify-content: center; align-items: center; cursor: pointer; }
+
+        /* FORMULAIRE */
+        .form-group { margin-bottom: 25px; position: relative; }
+        .form-group label { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-bottom: 10px; }
+        
+        .input-wrapper { position: relative; display: flex; align-items: center; }
+        .input-wrapper i { position: absolute; left: 15px; color: #333; transition: var(--transition); }
+
+        .auth-input {
+            width: 100%; padding: 14px 15px 14px 45px; background: #000; border: 1px solid var(--border-color);
+            color: #FFF; font-size: 14px; transition: var(--transition);
+        }
+
+        .auth-input:focus { border-color: var(--gold-mid); box-shadow: 0 0 10px rgba(212, 175, 55, 0.1); }
+        .auth-input:focus + i { color: var(--gold-mid); }
+
+        /* BOUTON LUXE */
+        .btn-submit {
+            width: 100%; padding: 16px; background: var(--gold-metallic); color: #000; border: none;
+            font-weight: 800; text-transform: uppercase; letter-spacing: 2px; font-size: 12px; cursor: pointer;
+            margin-top: 10px; transition: var(--transition);
+        }
+        .btn-submit:hover { transform: translateY(-2px); filter: brightness(1.1); }
+
+        .auth-footer { text-align: center; margin-top: 30px; }
+        .auth-footer a { color: var(--gold-mid); text-decoration: none; font-size: 12px; letter-spacing: 1px; transition: var(--transition); }
+        .auth-footer a:hover { color: #FFF; }
+
+        /* GESTION DES ERREURS */
+        #errorMessage { color: var(--error-red); font-size: 12px; text-align: center; margin-top: 15px; display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="auth-card">
+        <!-- HEADER LOGO (Ton SVG viendra ici) -->
+        <div class="auth-logo">
+            <div class="logo-box" onclick="window.location.href='index.html'">
+                <!-- INSÈRE TON SVG ICI -->
+                <span style="background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; letter-spacing: 3px;">PAYFUSION</span>
+            </div>
+        </div>
+
+        <form id="loginForm">
+            <div class="form-group">
+                <label>Adresse Email</label>
+                <div class="input-wrapper">
+                    <input type="email" id="email" class="auth-input" placeholder="votre@email.com" required>
+                    <i class="fas fa-envelope"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Mot de passe</label>
+                <div class="input-wrapper">
+                    <input type="password" id="password" class="auth-input" placeholder="••••••••" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="btnText">Se Connecter</button>
+            <p id="errorMessage"></p>
+        </form>
+
+        <div class="auth-footer">
+            <a href="register.html">Créer un compte Premium</a>
+        </div>
+    </div>
+
+    <!-- FIREBASE MODULE -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBZn3ofujSzGlutB7ZDGiNestHEzV7J0_8",
+            authDomain: "payfusion-gold.firebaseapp.com",
+            projectId: "payfusion-gold",
+            storageBucket: "payfusion-gold.firebasestorage.app",
+            messagingSenderId: "843759388438",
+            appId: "1:843759388438:web:019918e40d6e920d96f237"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const btnText = document.getElementById('btnText');
+
+        loginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            btnText.innerText = "VÉRIFICATION...";
+            errorMessage.style.display = "none";
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    // Logique Admin Secrète
+                    if(email === "payfusion@admin.com") {
+                        window.location.href = "admin.html";
+                    } else {
+                        window.location.href = "home.html";
+                    }
+                })
+                .catch((error) => {
+                    btnText.innerText = "SE CONNECTER";
+                    errorMessage.innerText = "Accès refusé : Identifiants invalides.";
+                    errorMessage.style.display = "block";
+                });
+        });
+    </script>
+</body>
+</html>
