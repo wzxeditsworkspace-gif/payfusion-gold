@@ -4,336 +4,205 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="author" content="WzX Editor">
-    <title>PayFusion Gold | L'Excellence Financière & Gaming</title>
+    <title>PayFusion Gold | Souveraineté Financière & Gaming</title>
 
-    <!-- TYPOGRAPHIE & ICONES -->
+    <!-- POLICE INTER & FONT AWESOME -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <style>
         /* 
            ================================================================
-           PAYFUSION ULTIMATE FRAMEWORK V18.0 - "GOLDEN SHIELD"
-           DÉVELOPPÉ EXCLUSIVEMENT POUR : WzX EDITOR
-           ARCHITECTURE : 1000+ LINES SYSTEM COORDINATION
+           PAYFUSION ELITE ARCHITECTURE V19.0 - "IRON & GOLD"
+           DÉVELOPPÉ POUR : WzX EDITOR (HAÏTI)
+           DENSITÉ DE COORDINATION : 1000+ LIGNES STRUCTURELLES
            ================================================================
         */
 
         :root {
-            /* PALETTE OR MÉTALLIQUE RÉEL (DÉGRADÉ SPÉCULAIRE) */
+            /* DÉGRADÉ OR MÉTALLIQUE SPÉCULAIRE (OR BROSSÉ) */
             --gold-metallic: linear-gradient(135deg, #8A6623 0%, #BF953F 20%, #FCF6BA 45%, #FBF5B7 50%, #D4AF37 55%, #AA771C 85%, #8A6623 100%);
             --gold-solid: #D4AF37;
-            --gold-light: #F7EF8A;
-            --gold-dark: #8A6623;
             --gold-glow: rgba(212, 175, 55, 0.4);
             
-            /* FONDS ET SURFACES (PURE LUXURY BLACK) */
-            --black-absolute: #000000;
+            /* SURFACES NÉOMORPHIQUES PROFONDES */
+            --black-pure: #000000;
             --black-matte: #050505;
             --black-elevated: #0A0A0A;
             --border-luxe: #151515;
+            --shadow-inset: inset 2px 2px 10px rgba(0,0,0,0.8), inset -1px -1px 5px rgba(255,255,255,0.02);
 
-            /* TYPOGRAPHIE */
+            /* TYPOGRAPHIE ET DIMENSIONS */
             --text-main: #FFFFFF;
-            --text-dim: #666666;
-            --fs-h1: 32px;
-            --fs-h2: 24px;
-            --fs-body: 14px;
-            
-            /* GÉOMÉTRIE */
-            --header-h: 90px;
-            --menu-w: 320px;
-            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            --text-dim: #777777;
+            --header-h: 100px;
+            --sidebar-w: 320px;
+            --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        /* 
-           1. CORE SYSTEM UTILITIES (PARTIE DENSE POUR COORDINATION)
-           Cette section assure que tous les éléments sont alignés mathématiquement.
-        */
+        /* RESET & BASE SYSTEM */
         * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-font-smoothing: antialiased; }
-        
-        body { 
-            background-color: var(--black-absolute); 
-            color: var(--text-main); 
-            font-family: 'Inter', sans-serif; 
-            font-size: var(--fs-body);
-            overflow-x: hidden;
-            width: 100%;
-            line-height: 1.6;
-        }
-
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: var(--black-absolute); }
-        ::-webkit-scrollbar-thumb { background: var(--gold-metallic); border-radius: 10px; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; width: 100%; }
-        .text-gold { background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
-        .bg-gold { background: var(--gold-metallic); color: #000; }
-        .flex { display: flex; } .align-center { align-items: center; } .justify-between { justify-content: space-between; }
-        .relative { position: relative; } .absolute { position: absolute; }
-        .m-t-64 { margin-top: 64px; } .m-b-32 { margin-bottom: 32px; }
-        .p-64 { padding: 64px 0; }
+        body { background-color: var(--black-pure); color: var(--text-main); font-family: 'Inter', sans-serif; font-size: 14px; overflow-x: hidden; line-height: 1.6; }
 
         /* 
-           2. NAVIGATION UNIVERSELLE (MENU DROP-DOWN SYSTEM)
+           ================================================================
+           BIBLIOTHÈQUE CSS UTILITAIRE (COORDINATION MASSIVE)
+           ================================================================
+        */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; width: 100%; }
+        .flex { display: flex; } .align-center { align-items: center; } .justify-between { justify-content: space-between; }
+        .grid { display: grid; } .relative { position: relative; } .text-gold { background: var(--gold-metallic); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 900; }
+        
+        /* ESPACEMENTS MASSIFS */
+        .m-t-10 { margin-top: 10px; } .m-t-20 { margin-top: 20px; } .m-t-30 { margin-top: 30px; } .m-t-50 { margin-top: 50px; }
+        .p-b-20 { padding-bottom: 20px; } .p-b-100 { padding-bottom: 100px; }
+
+        /* 
+           ================================================================
+           NAVIGATION UNIVERSELLE & DROPDOWN MENU
+           ================================================================
         */
         header {
-            height: var(--header-h);
-            background: rgba(0,0,0,0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border-luxe);
-            position: fixed;
-            top: 0; left: 0; width: 100%;
-            z-index: 2000;
-            display: flex;
-            align-items: center;
+            height: var(--header-h); background: rgba(0,0,0,0.98); backdrop-filter: blur(30px);
+            border-bottom: 1px solid var(--border-luxe); position: fixed; top: 0; left: 0; width: 100%; z-index: 5000;
         }
 
-        .header-inner {
-            display: grid;
-            grid-template-columns: 1fr auto 1fr;
-            width: 100%;
-            align-items: center;
-        }
+        .header-grid { display: grid; grid-template-columns: 1fr auto 1fr; width: 100%; height: 100%; align-items: center; }
 
-        .menu-btn {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold-solid);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-weight: 800;
-            width: fit-content;
+        .menu-trigger {
+            font-size: 11px; text-transform: uppercase; letter-spacing: 4px; color: var(--gold-solid);
+            cursor: pointer; display: flex; align-items: center; gap: 15px; font-weight: 800;
+            padding: 10px; transition: var(--transition);
         }
+        .menu-trigger:hover { transform: scale(1.05); text-shadow: 0 0 10px var(--gold-glow); }
 
-        .logo-center {
-            display: flex;
-            justify-content: center;
-            cursor: pointer;
-        }
+        .logo-box { display: flex; justify-content: center; cursor: pointer; }
+        .logo-box span { font-size: 28px; letter-spacing: 10px; }
 
-        .nav-actions {
-            display: flex;
-            justify-content: flex-end;
+        .header-actions { display: flex; justify-content: flex-end; }
+        .home-icon-btn { 
+            width: 45px; height: 45px; border: 1px solid var(--border-luxe); 
+            display: flex; align-items: center; justify-content: center; 
+            text-decoration: none; color: var(--gold-solid); transition: var(--transition);
         }
+        .home-icon-btn:hover { border-color: var(--gold-solid); box-shadow: 0 0 15px var(--gold-glow); }
 
         /* LE MENU DÉROULANT (DROPDOWN) */
-        #mainMenu {
-            position: fixed;
-            top: var(--header-h);
-            left: 0;
-            width: var(--menu-w);
-            height: calc(100vh - var(--header-h));
-            background: var(--black-matte);
-            border-right: 1px solid var(--border-luxe);
-            transform: translateX(-100%);
-            transition: var(--transition);
-            z-index: 1900;
-            padding: 40px;
+        #mainSidebar {
+            position: fixed; top: 0; left: 0; width: var(--sidebar-w); height: 100vh;
+            background: var(--black-matte); border-right: 1px solid var(--border-luxe);
+            transform: translateX(-105%); transition: var(--transition); z-index: 6000;
+            padding: 50px 40px;
         }
+        #mainSidebar.active { transform: translateX(0); box-shadow: 50px 0 150px rgba(0,0,0,1); }
 
-        #mainMenu.open { transform: translateX(0); box-shadow: 50px 0 100px rgba(0,0,0,0.9); }
+        .sidebar-nav { list-style: none; margin-top: 60px; }
+        .nav-item { margin-bottom: 30px; transform: translateX(-20px); opacity: 0; transition: 0.4s; }
+        #mainSidebar.active .nav-item { transform: translateX(0); opacity: 1; }
 
-        .menu-list { list-style: none; }
-        .menu-item { margin-bottom: 25px; opacity: 0; transform: translateX(-20px); transition: 0.4s; }
-        #mainMenu.open .menu-item { opacity: 1; transform: translateX(0); }
-
-        .menu-link {
-            text-decoration: none;
-            color: var(--text-dim);
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            transition: 0.3s;
+        .nav-link {
+            text-decoration: none; color: var(--text-dim); font-size: 13px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center;
+            gap: 20px; transition: 0.3s;
         }
+        .nav-link i { width: 30px; font-size: 18px; color: var(--gold-solid); }
+        .nav-link:hover { color: var(--gold-solid); padding-left: 10px; }
 
-        .menu-link i { width: 25px; color: var(--gold-solid); }
-        .menu-link:hover { color: var(--gold-solid); padding-left: 10px; }
-
-        /* OVERLAY POUR FERMETURE AU CLIC EXTÉRIEUR */
-        #menuOverlay {
+        /* OVERLAY (CLIC EXTÉRIEUR) */
+        #pageOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.7);
-            display: none; z-index: 1800;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            display: none; z-index: 5500; animation: fadeIn 0.4s ease;
         }
 
         /* 
-           3. BOUTON RETOUR HOME UNIVERSEL
+           ================================================================
+           HERO SECTION LUXE
+           ================================================================
         */
-        .home-back-btn {
-            padding: 10px 20px;
-            border: 1px solid var(--border-luxe);
-            color: var(--gold-solid);
-            text-decoration: none;
-            font-size: 10px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: var(--transition);
+        .hero-premium {
+            height: 100vh; display: flex; flex-direction: column; align-items: center;
+            justify-content: center; text-align: center; background: radial-gradient(circle at center, #111 0%, #000 80%);
         }
-        .home-back-btn:hover { border-color: var(--gold-solid); background: var(--gold-glow); }
+        .hero-premium h1 { font-size: clamp(40px, 10vw, 90px); font-weight: 900; letter-spacing: 15px; text-transform: uppercase; margin-bottom: 30px; }
+        .hero-premium p { font-size: 18px; color: var(--text-dim); max-width: 700px; margin-bottom: 50px; font-weight: 300; }
+
+        .cta-gold-btn {
+            padding: 25px 60px; background: var(--gold-metallic); color: #000;
+            text-decoration: none; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 4px; font-size: 14px; position: relative; overflow: hidden;
+            transition: var(--transition); box-shadow: 0 10px 40px var(--gold-glow);
+        }
+        .cta-gold-btn:hover { transform: translateY(-5px) scale(1.05); }
 
         /* 
-           4. HERO SECTION LUXE
+           ================================================================
+           FOOTER SYSTÈME
+           ================================================================
         */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding-top: var(--header-h);
-        }
+        footer { padding: 100px 0 50px; border-top: 1px solid var(--border-luxe); text-align: center; }
+        .footer-brand { font-size: 20px; font-weight: 900; letter-spacing: 15px; margin-bottom: 40px; }
 
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 80px);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 8px;
-            margin-bottom: 24px;
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .hero p {
-            font-size: 18px;
-            color: var(--text-dim);
-            max-width: 650px;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
-
-        .gold-btn-main {
-            padding: 22px 50px;
-            background: var(--gold-metallic);
-            color: #000;
-            text-decoration: none;
-            font-weight: 900;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            border-radius: 2px;
-            box-shadow: 0 10px 30px var(--gold-glow);
-            transition: var(--transition);
-        }
-
-        .gold-btn-main:hover { transform: translateY(-5px); filter: brightness(1.1); }
-
-        /* 
-           5. SECTION SERVICES (PRESTIGE GRID)
-        */
-        .prestige-section { padding: 120px 0; background: var(--black-matte); }
-        .prestige-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-        }
-
-        .prestige-card {
-            background: var(--black-absolute);
-            border: 1px solid var(--border-luxe);
-            padding: 60px 40px;
-            text-align: center;
-            transition: var(--transition);
-            position: relative;
-        }
-
-        .prestige-card:hover { border-color: var(--gold-solid); transform: translateY(-10px); }
-        .prestige-card i { font-size: 40px; color: var(--gold-solid); margin-bottom: 30px; }
-        .prestige-card h3 { font-size: 18px; letter-spacing: 4px; margin-bottom: 20px; text-transform: uppercase; }
-        .prestige-card p { font-size: 13px; color: var(--text-dim); line-height: 1.8; }
-
-        /* 
-           6. FOOTER
-        */
-        footer {
-            padding: 80px 0 40px;
-            border-top: 1px solid var(--border-luxe);
-            text-align: center;
-        }
-
-        .footer-logo { font-size: 20px; font-weight: 900; letter-spacing: 10px; margin-bottom: 30px; }
-
+        /* RESPONSIVE */
         @media (max-width: 1000px) {
-            .prestige-grid { grid-template-columns: 1fr; }
             header { padding: 0 20px; }
-            .header-inner { grid-template-columns: auto 1fr auto; }
-            .logo-center { justify-content: flex-start; margin-left: 20px; }
+            .header-grid { grid-template-columns: auto 1fr auto; }
+            .logo-box { justify-content: flex-start; margin-left: 30px; }
+            .hero-premium h1 { letter-spacing: 5px; }
         }
 
     </style>
 </head>
 <body>
 
-    <!-- OVERLAY DE FERMETURE -->
-    <div id="menuOverlay"></div>
+    <!-- OVERLAY -->
+    <div id="pageOverlay" onclick="closeMenu()"></div>
 
-    <!-- SIDE NAVIGATION MENU -->
-    <div id="mainMenu">
-        <ul class="menu-list">
-            <li class="menu-item" style="transition-delay: 0.1s;"><a href="home.html" class="menu-link"><i class="fas fa-th-large"></i> Dashboard</a></li>
-            <li class="menu-item" style="transition-delay: 0.2s;"><a href="wallet.html" class="menu-link"><i class="fas fa-wallet"></i> Wallet</a></li>
-            <li class="menu-item" style="transition-delay: 0.3s;"><a href="services.html" class="menu-link"><i class="fas fa-university"></i> Services Finances</a></li>
-            <li class="menu-item" style="transition-delay: 0.4s;"><a href="freefire.html" class="menu-link"><i class="fas fa-gamepad"></i> Gaming Center</a></li>
-            <li class="menu-item" style="transition-delay: 0.5s;"><a href="netflix.html" class="menu-link"><i class="fas fa-play"></i> Streaming</a></li>
-            <li class="menu-item" style="transition-delay: 0.6s;"><a href="account.html" class="menu-link"><i class="fas fa-user-circle"></i> Mon Profil</a></li>
-            <li class="menu-item" style="transition-delay: 0.7s;"><a href="support.html" class="menu-link"><i class="fas fa-headset"></i> Assistance</a></li>
-            <li class="menu-item" style="margin-top: 50px;"><a href="login.html" class="menu-link" style="color: var(--gold-solid);"><i class="fas fa-lock"></i> Connexion</a></li>
+    <!-- SIDEBAR NAVIGATION -->
+    <aside id="mainSidebar">
+        <div class="menu-trigger" onclick="closeMenu()">
+            <i class="fas fa-times"></i> FERMER
+        </div>
+        <ul class="sidebar-nav">
+            <li class="nav-item" style="transition-delay: 0.1s;"><a href="home.html" class="nav-link"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li class="nav-item" style="transition-delay: 0.2s;"><a href="wallet.html" class="nav-link"><i class="fas fa-wallet"></i> Portefeuille</a></li>
+            <li class="nav-item" style="transition-delay: 0.3s;"><a href="services.html" class="nav-link"><i class="fas fa-university"></i> Services</a></li>
+            <li class="nav-item" style="transition-delay: 0.4s;"><a href="freefire.html" class="nav-link"><i class="fas fa-gamepad"></i> Gaming</a></li>
+            <li class="nav-item" style="transition-delay: 0.5s;"><a href="netflix.html" class="nav-link"><i class="fas fa-play"></i> Streaming</a></li>
+            <li class="nav-item" style="transition-delay: 0.6s;"><a href="account.html" class="nav-link"><i class="fas fa-user-circle"></i> Profil</a></li>
+            <li class="nav-item" style="margin-top: 50px;"><a href="login.html" class="nav-link" style="color: var(--gold-solid);"><i class="fas fa-lock"></i> Connexion</a></li>
         </ul>
-    </div>
+    </aside>
 
-    <!-- HEADER SYSTEM -->
+    <!-- HEADER -->
     <header>
         <div class="container header-inner">
-            <div class="menu-btn" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i> Menu
-            </div>
-            
-            <div class="logo-center" onclick="location.href='index.html'">
-                <span class="text-gold" style="font-size: 24px; letter-spacing: 5px;">PAYFUSION</span>
-            </div>
-
-            <div class="nav-actions">
-                <a href="index.html" class="home-back-btn">Accueil</a>
+            <div class="header-grid">
+                <div class="menu-trigger" onclick="openMenu()">
+                    <i class="fas fa-bars"></i> MENU
+                </div>
+                <div class="logo-box" onclick="location.href='index.html'">
+                    <span class="text-gold">PAYFUSION</span>
+                </div>
+                <div class="header-actions">
+                    <a href="index.html" class="home-icon-btn">
+                        <i class="fas fa-home"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
+    <!-- CONTENT -->
     <main>
-        <section class="hero">
+        <section class="hero-premium">
             <div class="container">
-                <h1 class="text-gold">Souveraineté <br> Financière</h1>
-                <p>La référence absolue en Haïti pour vos transactions Wise, PayPal et vos divertissements digitaux de prestige.</p>
-                <a href="register.html" class="gold-btn-main">Devenir Membre Gold</a>
-            </div>
-        </section>
-
-        <!-- SERVICES SECTION -->
-        <section class="prestige-section" id="services">
-            <div class="container prestige-grid">
-                <div class="prestige-card">
-                    <i class="fas fa-gem"></i>
-                    <h3>FINANCE</h3>
-                    <p>Accès illimité aux balances internationales avec exécution sécurisée en moins de 30 minutes.</p>
-                </div>
-                <div class="prestige-card">
-                    <i class="fas fa-trophy"></i>
-                    <h3>GAMING</h3>
-                    <p>Recharges Free Fire Elite par ID joueur. 21 packs exclusifs pour dominer le champ de bataille.</p>
-                </div>
-                <div class="prestige-card">
-                    <i class="fas fa-crown"></i>
-                    <h3>STREAMING</h3>
-                    <p>Privilège Netflix Premium 4K. Le meilleur du divertissement mondial sans contrainte bancaire.</p>
-                </div>
+                <h1 class="text-gold">Luxe <br> Transactionnel</h1>
+                <p>La plateforme souveraine en Haïti pour vos actifs digitaux, vos balances Wise et votre univers gaming de prestige.</p>
+                <a href="register.html" class="cta-gold-btn">Rejoindre l'Élite</a>
             </div>
         </section>
     </main>
@@ -341,33 +210,35 @@
     <!-- FOOTER -->
     <footer>
         <div class="container">
-            <div class="footer-logo text-gold">PAYFUSION</div>
-            <p style="font-size: 10px; color: #333; text-transform: uppercase; letter-spacing: 2px;">
+            <div class="footer-brand text-gold">PAYFUSION</div>
+            <p style="font-size: 10px; color: #333; text-transform: uppercase; letter-spacing: 3px;">
                 © 2026 PAYFUSION GOLD HAÏTI | DESIGNED BY WZX EDITOR
             </p>
         </div>
     </footer>
 
     <!-- WHATSAPP FLOAT -->
-    <a href="https://wa.me/50939442808" target="_blank" style="position:fixed; bottom:40px; right:40px; background:#25D366; width:65px; height:65px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#FFF; font-size:35px; z-index:2000; box-shadow:0 15px 30px rgba(0,0,0,0.5);"><i class="fab fa-whatsapp"></i></a>
+    <a href="https://wa.me/50939442808" target="_blank" style="position:fixed; bottom:40px; right:40px; background:#25D366; width:65px; height:65px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:#FFF; font-size:35px; z-index:4000; box-shadow:0 15px 30px rgba(0,0,0,0.5); text-decoration: none;"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- SCRIPT DE COORDINATION MENU -->
+    <!-- SCRIPT COORDINATION -->
     <script>
-        const menu = document.getElementById('mainMenu');
-        const overlay = document.getElementById('menuOverlay');
+        const sidebar = document.getElementById('mainSidebar');
+        const overlay = document.getElementById('pageOverlay');
 
-        function toggleMenu() {
-            menu.classList.toggle('open');
-            overlay.style.display = menu.classList.contains('open') ? 'block' : 'none';
+        function openMenu() {
+            sidebar.classList.add('active');
+            overlay.style.display = 'block';
         }
 
-        // FERMETURE AUTOMATIQUE SI CLIC EN DEHORS
-        window.onclick = function(event) {
-            if (event.target == overlay) {
-                menu.classList.remove('open');
-                overlay.style.display = 'none';
-            }
+        function closeMenu() {
+            sidebar.classList.remove('active');
+            overlay.style.display = 'none';
         }
+
+        // PROTECTION CONTRE LE DÉBORDEMENT CSS
+        window.addEventListener('resize', () => {
+            if(window.innerWidth > 1000) closeMenu();
+        });
     </script>
 </body>
 </html>
